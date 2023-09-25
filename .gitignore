@@ -1,4 +1,4 @@
 #ipynb_checkpoints folder
 ./.ipynb_checkpoints
 
-./venv
+./application/flask-server/venv
