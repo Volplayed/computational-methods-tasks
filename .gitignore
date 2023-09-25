@@ -1,2 +1,4 @@
 #ipynb_checkpoints folder
 ./.ipynb_checkpoints
+
+./venv
