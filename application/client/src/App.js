@@ -1,10 +1,12 @@
 
 import './App.css';
 import { useState, useEffect } from 'react';
-
+import {HUD} from './HUD'
 
 
 function App() {
+
+  const [method, setMethod] = useState('newtons-method')
 
   const [data, setData] = useState([])
 
@@ -31,29 +33,35 @@ function App() {
 
   return (
     <div className="App">
-      <form className='input'>
-        <label for="f">f(x): </label>
-        <input type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
-        <label for="df">f'(x): </label>
-        <input type="text" placeholder="3*x**2 - 2" name="df" id="df" onChange={(e) => setDf(e.target.value)}/>
-        <label for="x">x0: </label>
-        <input type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)}/>
-        <label for="a">a: </label>
-        <input type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
-        <label for="b">b: </label>
-        <input type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
-        <label for="epsilon">epsilon: </label>
-        <input type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-        <button type="button" onClick={() => getData(f, df, x, a, b, epsilon)}>Submit</button>
-      </form>
-      <div className="data">
-      {
-      data.length === 0 ? (
-          <></>
-        ) : (
-          Object.values(data).map((x, i) => <p key={i}>{x}</p>)
-        )}
+
+      <div className='container'>
+        <HUD onClick={(x) => setMethod(x)} state={method} />
+
+        <form className='input'>
+          <label for="f">f(x): </label>
+          <input type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
+          <label for="df">f'(x): </label>
+          <input type="text" placeholder="3*x**2 - 2" name="df" id="df" onChange={(e) => setDf(e.target.value)}/>
+          <label for="x">x0: </label>
+          <input type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)}/>
+          <label for="a">a: </label>
+          <input type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
+          <label for="b">b: </label>
+          <input type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
+          <label for="epsilon">epsilon: </label>
+          <input type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
+          <button type="button" onClick={() => getData(f, df, x, a, b, epsilon)}>Submit</button>
+        </form>
+        <div className="data">
+        {
+        data.length === 0 ? (
+            <></>
+          ) : (
+            Object.values(data).map((x, i) => <p key={i}>{x}</p>)
+          )}
+        </div>
       </div>
+
     </div>   
   );
 }
