@@ -40,8 +40,6 @@ def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
     #list of approximations
     x_list = [x_approx]
 
-    tangent = lambda x: dfunc(x_approx) * (x - x_approx) + func(x_approx)
-
     while abs(float(func(x_approx))) > epsilon:
         x_approx = x_approx - func(x_approx) / dfunc(x_approx)
 
@@ -51,13 +49,12 @@ def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
             x_approx = b
 
         x_list.append(x_approx)
-        #save tangent for visualization
-        tangent = lambda x: dfunc(x_approx) * (x - x_approx) + func(x_approx)
 
         iter += 1
 
         if iter > max_iter:
             raise RuntimeError("The number of iterations exceeded the maximum")
+        
     return {"func": f, "deriv" : df, 'a': a, 'b': b, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,
             "method": "newtons-method"}
