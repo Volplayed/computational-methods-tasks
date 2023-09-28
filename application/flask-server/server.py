@@ -56,14 +56,14 @@ def konashuk_method_server():
     f = request.args.get('f')
     a = request.args.get('a')
     b = request.args.get('b')
-    x0 = request.args.get('x1')
-    x1 = request.args.get('x2')
+    x0 = request.args.get('x0')
+    x1 = request.args.get('x1')
     epsilon = request.args.get('epsilon')
 
     response = konashuk_method(str(f), float(a), float(b), float(x0), float(x1), float(epsilon))
 
     #test url
-    #http://localhost:5000/konashuk-method/?f=x**3-4*x-3&x1=1&x2=2&a=0&b=2&epsilon=1e-7
+    #http://localhost:5000/konashuk-method/?f=x**3-4*x-3&x0=1&x1=2&a=0&b=2&epsilon=1e-7
 
     return response
 
