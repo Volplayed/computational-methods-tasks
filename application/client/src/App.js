@@ -14,7 +14,9 @@ function App() {
     <div className="App">
 
       <div className='container'>
-        <HUD onClick={(x) => setMethod(x)} state={method} />
+        <HUD onClick={(x) => {setMethod(x)
+        setData([])}
+        } state={method} />
         <div className='form-container'>
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
             <IterationInputForm data={data} setData={setData} method={method} />) : (<></>)
