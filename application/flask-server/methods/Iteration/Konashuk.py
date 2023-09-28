@@ -32,6 +32,11 @@ def konashuk_method(f, a, b, aprox1, aprox2, epsilon=1e-7, max_iter=100):
     while abs(func(x_list[-1]) - func(x_list[-2])) > epsilon:
         x_list.append(x_list[-1] - (x_list[-1] - x_list[-2]) * func(x_list[-1]) / (func(x_list[-1]) - func(x_list[-2])))
 
+        if x_list[-1] < a:
+            x_list[-1] = a
+        elif x_list[-1] > b:
+            x_list[-1] = b
+
         iter += 1
 
         if iter > max_iter:
