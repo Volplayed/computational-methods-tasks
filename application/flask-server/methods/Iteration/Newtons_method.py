@@ -1,11 +1,8 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import sympy as sp
 import methods.Iteration.tools as tools
 
 def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
     """
-    Realization of the iteration method for solving nonlinear equations on the segment [a, b]
+    Realization of the newtons method for solving nonlinear equations on the segment [a, b]
 
     Parameters
     ----------
@@ -57,7 +54,7 @@ def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
         
     return {"func": f, "deriv" : df, 'a': a, 'b': b, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,
-            "method": "newtons-method"}
+            "method": "Newtons"}
 
 
 
