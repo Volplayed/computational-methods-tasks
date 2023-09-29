@@ -9,27 +9,34 @@ function App() {
   const [method, setMethod] = useState('newtons-method')
 
   const [data, setData] = useState([])
+  const [plot, setPlot] = useState('')
 
   return (
     <div className="App">
 
       <div className='container'>
         <HUD onClick={(x) => {setMethod(x)
-        setData([])}
+        setData([])
+        setPlot('')}
         } state={method} />
         <div className='form-container'>
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
-            <IterationInputForm data={data} setData={setData} method={method} />) : (<></>)
+            <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} />) : (<></>)
           }
         </div>
         
         <div className="data">
-        {
-        data.length === 0 ? (
-            <></>
-          ) : (
+          <div className='text-data'>
+          {
+          data.length === 0 ? (
+              <></>
+            ) : (
             Object.values(data).map((x, i) => <p key={i}>{x}</p>)
           )}
+          </div>
+          <div className='plot'>
+            {plot && <img src={plot} alt="Matplotlib Plot" />}
+          </div>
         </div>
       </div>
 

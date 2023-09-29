@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
-import io
+from flask import send_file
 
 def parse_expression(expression_str, variable):
     """
@@ -85,10 +85,12 @@ def create_plot_newtons(f, df, x, a, b):
     for i in range(len(x)):
         ax.annotate(f'$x_{i+1}$', (x[i], 0), xytext=(x[i] + 0.1, 0.1))
 
-    bytes_image = io.BytesIO()
-    plt.savefig(bytes_image, format='png')
-    bytes_image.seek(0)
-    return bytes_image
+    
+     # Save the plot to a file (e.g., in PNG format)
+    plt.savefig('plot.png')
+    
+    # Send the saved plot as a file to the client
+    return send_file('plot.png', mimetype='image/png')
 
 
 def create_plot_konashuk(f, x, a, b):
@@ -151,7 +153,8 @@ def create_plot_konashuk(f, x, a, b):
     for i in range(len(x)):
         ax.annotate(f'$x_{i+1}$', (x[i], 0), xytext=(x[i] + 0.1, 0.1))
 
-    bytes_image = io.BytesIO()
-    plt.savefig(bytes_image, format='png')
-    bytes_image.seek(0)
-    return bytes_image
+    # Save the plot to a file (e.g., in PNG format)
+    plt.savefig('plot.png')
+    
+    # Send the saved plot as a file to the client
+    return send_file('plot.png', mimetype='image/png')

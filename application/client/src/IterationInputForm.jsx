@@ -22,8 +22,34 @@ function getDataKonashuk(f, x0, x1, a, b, epsilon, setData) {
       .catch(err => console.log(err))
   }
 
+//plot functions
+function getPlotNewton(f, df, x, a, b, setPlot) {
+    // change all + sings to %2B
+    f = f.replaceAll('+', '%2B')
+    df = df.replaceAll('+', '%2B')
 
-export const IterationInputForm = ({data, setData, method}) => {
+    fetch('http://localhost:5000/newtons-method-plot/?f=' + f + '&df=' + df + '&a=' + a + '&b=' + b + '&x_list=' + x)
+    .then(res=>{return res.blob()})
+    .then(blob=>{
+        setPlot(URL.createObjectURL(blob))
+    })
+      .catch(err => console.log(err))
+  }
+
+function getPlotKonashuk(f, x, a, b, setPlot) {
+    // change all + sings to %2B
+    f = f.replaceAll('+', '%2B')
+
+    fetch('http://localhost:5000/konashuk-method-plot/?f='+f+ '&a=' + a+ '&b=' + b +'&x_list='+ x )
+    .then(res=>{return res.blob()})
+    .then(blob=>{
+        setPlot(URL.createObjectURL(blob))
+    })
+      .catch(err => console.log(err))
+  }
+
+
+export const IterationInputForm = ({data, setData, method, setPlot}) => {
     const [f, setF] = useState('')
     const [df, setDf] = useState('')
     const [x, setX] = useState('')
@@ -51,7 +77,12 @@ export const IterationInputForm = ({data, setData, method}) => {
                     <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
                     <label for="epsilon">epsilon: </label>
                     <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                    <button className="button submit" type="button" onClick={() => getDataNewton(f, df, x, a, b, epsilon, setData)}>Submit</button>
+                    <button className="button submit" type="button" onClick={() => {
+                        getDataNewton(f, df, x, a, b, epsilon, setData)
+                        if (data.x_list){
+                            getPlotNewton(f, df, data.x_list.join(','), a, b, setPlot)
+                        }
+                        }}>Submit</button>
                 </form> 
 
                 </div>
@@ -75,7 +106,11 @@ export const IterationInputForm = ({data, setData, method}) => {
                         <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
                         <label for="epsilon">epsilon: </label>
                         <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                        <button className="button submit" type="button" onClick={() => getDataKonashuk(f, x, x1, a, b, epsilon, setData)}>Submit</button>
+                        <button className="button submit" type="button" onClick={() => {
+                        getDataKonashuk(f, x, x1, a, b, epsilon, setData)
+                        if (data.x_list){
+                            getPlotKonashuk(f, data.x_list.join(','), a, b, setPlot)
+                        }}}>Submit</button>
                     </form> 
     
                     </div>
