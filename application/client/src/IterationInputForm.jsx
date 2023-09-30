@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function getDataNewton(f, df, x, a, b, epsilon, setData) {
+function getDataNewton(f, df, x, a, b, epsilon, setData, setPlot, data) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
     df = df.replaceAll('+', '%2B')
@@ -8,28 +8,45 @@ function getDataNewton(f, df, x, a, b, epsilon, setData) {
     fetch('http://localhost:5000/newtons-method/?f=' + f + '&df=' + df + '&x=' + x + '&a=' + a + '&b=' + b + '&epsilon=' + epsilon)
     .then(res => res.json()).then(data => {
       console.log(data)
-        setData(data)})
+        setData(data)
+        if (data.x_list){
+            getPlotNewton(f, df, data.x_list.join(','), a, b, setPlot)
+          }})
       .catch(err => console.log(err))
+
+      
   }
-function getDataKonashuk(f, x0, x1, a, b, epsilon, setData) {
+function getDataKonashuk(f, x0, x1, a, b, epsilon, setData, setPlot, data) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
 
     fetch('http://localhost:5000/konashuk-method/?f='+f +'&x0='+ x0+ '&x1=' + x1 + '&a=' + a+ '&b=' + b+ '&epsilon=' + epsilon)
     .then(res => res.json()).then(data => {
       console.log(data)
-        setData(data)})
+        setData(data)
+        if (data.x_list){
+            getPlotKonashuk(f, data.x_list.join(','), a, b, setPlot)
+          }})
       .catch(err => console.log(err))
+
+      
   }
-function getDataSimpleIteration(f, x, a, b, c, epsilon, setData) {
+function getDataSimpleIteration(f, x, a, b, c, epsilon, setData, setPlot, data) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
+
+    
 
     fetch('http://localhost:5000/simple-iteration-method/?f='+f +'&x='+ x+ '&a=' + a+ '&b=' + b+ '&C=' + c+ '&epsilon=' + epsilon)
     .then(res => res.json()).then(data => {
       console.log(data)
-        setData(data)})
+        setData(data)
+        if (data.x_list){
+            getPlotSimpleIteration(f, data.x_list.join(','), a, b, setPlot)
+          }})
       .catch(err => console.log(err))
+
+      
   }
 
 
@@ -101,10 +118,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                     <label for="epsilon">epsilon: </label>
                     <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
                     <button className="button submit" type="button" onClick={() => {
-                        getDataNewton(f, df, x, a, b, epsilon, setData)
-                        if (data.x_list){
-                            getPlotNewton(f, df, data.x_list.join(','), a, b, setPlot)
-                        }
+                        getDataNewton(f, df, x, a, b, epsilon, setData, setPlot, data)
                         }}>Submit</button>
                 </form> 
 
@@ -130,10 +144,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                         <label for="epsilon">epsilon: </label>
                         <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
                         <button className="button submit" type="button" onClick={() => {
-                        getDataKonashuk(f, x, x1, a, b, epsilon, setData)
-                        if (data.x_list){
-                            getPlotKonashuk(f, data.x_list.join(','), a, b, setPlot)
-                        }}}>Submit</button>
+                        getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)}}>Submit</button>
                     </form> 
     
                     </div>
@@ -159,10 +170,8 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                             <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
                             <button className="button submit" type="button" onClick={() => {
                                 console.log(f, x, a, b, c, epsilon)
-                                getDataSimpleIteration(f, x, a, b, c, epsilon, setData)
-                                if (data.x_list){
-                                    getPlotSimpleIteration(f, data.x_list.join(','), a, b, setPlot)
-                            }}}>Submit</button>
+                                getDataSimpleIteration(f, x, a, b, c, epsilon, setData, setPlot, data)
+                                }}>Submit</button>
                         </form> 
         
                         </div>
