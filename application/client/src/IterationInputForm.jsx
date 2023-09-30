@@ -21,6 +21,17 @@ function getDataKonashuk(f, x0, x1, a, b, epsilon, setData) {
         setData(data)})
       .catch(err => console.log(err))
   }
+function getDataSimpleIteration(f, x, a, b, c, epsilon, setData) {
+    // change all + sings to %2B
+    f = f.replaceAll('+', '%2B')
+
+    fetch('http://localhost:5000/simple-iteration-method/?f='+f +'&x='+ x+ '&a=' + a+ '&b=' + b+ '&C=' + c+ '&epsilon=' + epsilon)
+    .then(res => res.json()).then(data => {
+      console.log(data)
+        setData(data)})
+      .catch(err => console.log(err))
+  }
+
 
 //plot functions
 function getPlotNewton(f, df, x, a, b, setPlot) {
@@ -47,6 +58,17 @@ function getPlotKonashuk(f, x, a, b, setPlot) {
     })
       .catch(err => console.log(err))
   }
+function getPlotSimpleIteration(f, x, a, b, setPlot) {
+    // change all + sings to %2B
+    f = f.replaceAll('+', '%2B')
+
+    fetch('http://localhost:5000/simple-iteration-method-plot/?f='+f+ '&a=' + a+ '&b=' + b + '&x_list='+ x )
+    .then(res=>{return res.blob()})
+    .then(blob=>{
+        setPlot(URL.createObjectURL(blob))
+    })
+      .catch(err => console.log(err))
+  }
 
 
 export const IterationInputForm = ({data, setData, method, setPlot}) => {
@@ -56,6 +78,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
     const [x1, setX1] = useState('')
     const [a, setA] = useState('')
     const [b, setB] = useState('')
+    const [c, setC] = useState('')
     const [epsilon, setEpsilon] = useState('')
 
 
@@ -130,9 +153,16 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                             <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
                             <label for="b">b: </label>
                             <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
+                            <label for="c">C: </label>
+                            <input className="textinput" type="text" placeholder="0.5" name="c" id="c" onChange={(e) => setC(e.target.value)}/>
                             <label for="epsilon">epsilon: </label>
                             <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                            <button className="button submit" type="button" onClick={() => null}>Submit</button>
+                            <button className="button submit" type="button" onClick={() => {
+                                console.log(f, x, a, b, c, epsilon)
+                                getDataSimpleIteration(f, x, a, b, c, epsilon, setData)
+                                if (data.x_list){
+                                    getPlotSimpleIteration(f, data.x_list.join(','), a, b, setPlot)
+                            }}}>Submit</button>
                         </form> 
         
                         </div>
