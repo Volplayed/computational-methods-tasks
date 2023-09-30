@@ -4,9 +4,10 @@ import io
 #methods
 from methods.Iteration.Newtons_method import newtons_method
 from methods.Iteration.Konashuk import konashuk_method
+from methods.Iteration.Simple_iteration import simple_iteration
 
 #tools
-from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk
+from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
 
 app = Flask(__name__)
 CORS(app)
@@ -81,6 +82,41 @@ def plot_konashuk_method_server():
 
     #test url
     #http://localhost:5000/konashuk-method-plot/?f=x**3-4*x-3&x_list=1.0,2.0,3.0,2.2,2.27007299270073,2.3048474471924383,2.302735801866057,2.3027755898951936,2.3027756377331,2.302775637731995&a=0&b=2
+#Simple-iteration method
+@app.route('/simple-iteration-method/', methods=['GET'])
+def simple_iteration_method_server():
+
+    #get parameters
+    f = request.args.get('f')
+    a = request.args.get('a')
+    b = request.args.get('b')
+    x0 = request.args.get('x')
+    c = request.args.get('C')
+    epsilon = request.args.get('epsilon')
+
+    #test url
+    #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&&x=1&a=0&b=2&C=0.35&epsilon=1e-7
+
+    response = simple_iteration(str(f), float(a), float(b), float(x0), float(c), float(epsilon))
+    return response
+
+#plot Simple-iteration method
+@app.route('/simple-iteration-method-plot/', methods=['GET'])
+def plot_simple_iteration_method_server():
+
+    f = request.args.get('f')
+    a = request.args.get('a')
+    b = request.args.get('b')
+    x_list = request.args.get('x_list')
+    
+    #convert string to list of floats
+    x_list = list(map(float, x_list.split(',')))
+
+    return create_plot_simple_iteration(str(f), x_list, float(a), float(b))
+
+
+    #test url
+    #http://localhost:5000/simple-iteration-method-plot/?f=x**3-4%20-3&a=0.1&b=5&x_list=1.0,1.6,1.8904,1.9148443572736,1.9127419889261075,1.9129496638217682,1.9129293752829035,1.9129313595280073,1.9129311654871364,1.9129311844627435
 
    
 
