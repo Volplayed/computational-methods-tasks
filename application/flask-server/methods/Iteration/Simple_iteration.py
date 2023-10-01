@@ -24,7 +24,7 @@ def simple_iteration(f, a, b, aprox, C,epsilon=1e-7, max_iter=100):
     x : float
         Approximate solution of the equation
     """
-    if C <= 0 or C >= 1:
+    if abs(C) <= 0 or abs(C) >= 1:
         raise ValueError("C must be between 0 and 1")
 
     iter = 0
@@ -39,16 +39,12 @@ def simple_iteration(f, a, b, aprox, C,epsilon=1e-7, max_iter=100):
     x_list = [x_approx]
 
     while abs(float(func(x_approx))) > epsilon:
-        x_approx = x_approx - C*func(x_approx)
+        delta = C*func(x_approx)
+        delta = delta if (func(x_approx+epsilon) - func(x_approx-epsilon)) > 0 else -delta
+        x_approx = x_approx - delta
+        
         print(x_approx)
-
-        if x_approx < a:
-            x_approx = a
-        elif x_approx > b:
-            x_approx = b
-
         x_list.append(x_approx)
-
         iter += 1
 
         if iter > max_iter:
