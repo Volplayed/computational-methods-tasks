@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import {HUD} from './HUD'
 import { IterationInputForm } from './IterationInputForm';
 import { DataContainer } from './DataContainer';
-import { MatrixInput } from './MatrixInput';
 
 function App() {
 
@@ -12,6 +11,7 @@ function App() {
 
   const [data, setData] = useState([])
   const [plot, setPlot] = useState('')
+
 
   return (
     <div className="App">

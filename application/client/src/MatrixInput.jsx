@@ -47,3 +47,44 @@ export function MatrixInput ({A, setA, size}) {
         </div>
     )
 }
+
+export function VectorInput ({B, setB, size}) {
+    const createVector= (size) => {
+        let vector = []
+        for (let i = 0; i < size; i++) {
+            vector.push(0)
+        }
+        return vector
+    }
+    if (B.length !== size) {
+        setB(createVector(size))
+    }
+
+    
+    //handle change in vector
+    const handleBChange = (e) => {
+        let value = e.target.value
+        let index = e.target.dataset.index
+        let newB = B
+        newB[index] = value
+        setB([...newB])
+    }
+    
+    return (
+        <div className="vector-input">
+            <table>
+                <tbody>
+                    <tr>
+                        {B.map((col, i) => {
+                            return (
+                                <td key={i}>
+                                    <input className="input vector-element matrix-element" type="text" value={col} data-index={i} onChange={handleBChange}/>
+                                </td>
+                            )
+                        })}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    )
+}
