@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 export function MatrixInput ({A, setA, size}) {
 
     //create matrix of size size
@@ -11,9 +13,7 @@ export function MatrixInput ({A, setA, size}) {
         }
         return matrix
     }
-    if (A.length !== size) {
-        setA(createMatrix(size))
-    }
+    useEffect(() => {setA(createMatrix(size))}, [size])
 
     //handle change in matrix
     const handleAChange = (e) => {
@@ -36,6 +36,7 @@ export function MatrixInput ({A, setA, size}) {
                                     return (
                                         <td key={j}>
                                             <input className="input matrix-element" type="text" value={col} data-row={i} data-col={j} onChange={handleAChange}/>
+                                            <p className="vector-element matrix-element matrix-text">x<sub>{j+1}</sub></p>
                                         </td>
                                     )
                                 })}
@@ -56,10 +57,8 @@ export function VectorInput ({B, setB, size}) {
         }
         return vector
     }
-    if (B.length !== size) {
-        setB(createVector(size))
-    }
-
+    
+    useEffect(() => {setB(createVector(size))}, [size])
     
     //handle change in vector
     const handleBChange = (e) => {
@@ -79,6 +78,7 @@ export function VectorInput ({B, setB, size}) {
                             return (
                                 <td key={i}>
                                     <input className="input vector-element matrix-element" type="text" value={col} data-index={i} onChange={handleBChange}/>
+                                    
                                 </td>
                             )
                         })}

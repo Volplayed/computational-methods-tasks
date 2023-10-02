@@ -44,4 +44,4 @@ def konashuk_method(f, a, b, aprox1, aprox2, epsilon=1e-7, max_iter=100):
         
     return {"func": f, 'a': a, 'b': b, "epsilon": epsilon,
             "x_approx": x_list[-1], "x_list": x_list,
-            "method": "Konaschuk"}
+            "method": "Konashuk"}
