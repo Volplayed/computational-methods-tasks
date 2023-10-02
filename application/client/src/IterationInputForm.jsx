@@ -31,18 +31,18 @@ function getDataKonashuk(f, x0, x1, a, b, epsilon, setData, setPlot, data) {
 
       
   }
-function getDataSimpleIteration(f, x, a, b, c, epsilon, setData, setPlot, data) {
+function getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
 
     
 
-    fetch('http://localhost:5000/simple-iteration-method/?f='+f +'&x='+ x+ '&a=' + a+ '&b=' + b+ '&C=' + c+ '&epsilon=' + epsilon)
+    fetch('http://localhost:5000/simple-iteration-method/?f='+f +'&x='+ x + '&C=' + c+ '&epsilon=' + epsilon)
     .then(res => res.json()).then(data => {
       console.log(data)
         setData(data)
         if (data.x_list){
-            getPlotSimpleIteration(f, data.x_list.join(','), a, b, setPlot)
+            getPlotSimpleIteration(f, data.x_list.join(','), setPlot)
           }})
       .catch(err => console.log(err))
 
@@ -57,9 +57,9 @@ function getPlotNewton(f, df, x, a, b, setPlot) {
     df = df.replaceAll('+', '%2B')
 
     fetch('http://localhost:5000/newtons-method-plot/?f=' + f + '&df=' + df + '&a=' + a + '&b=' + b + '&x_list=' + x)
-    .then(res=>{return res.blob()})
-    .then(blob=>{
-        setPlot(URL.createObjectURL(blob))
+    .then(res=> res.text())
+    .then(data=>{
+        setPlot(data)
     })
       .catch(err => console.log(err))
   }
@@ -69,20 +69,20 @@ function getPlotKonashuk(f, x, a, b, setPlot) {
     f = f.replaceAll('+', '%2B')
 
     fetch('http://localhost:5000/konashuk-method-plot/?f='+f+ '&a=' + a+ '&b=' + b +'&x_list='+ x )
-    .then(res=>{return res.blob()})
-    .then(blob=>{
-        setPlot(URL.createObjectURL(blob))
+    .then(res=> res.text())
+    .then(data=>{
+        setPlot(data)
     })
       .catch(err => console.log(err))
   }
-function getPlotSimpleIteration(f, x, a, b, setPlot) {
+function getPlotSimpleIteration(f, x, setPlot) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
 
-    fetch('http://localhost:5000/simple-iteration-method-plot/?f='+f+ '&a=' + a+ '&b=' + b + '&x_list='+ x )
-    .then(res=>{return res.blob()})
-    .then(blob=>{
-        setPlot(URL.createObjectURL(blob))
+    fetch('http://localhost:5000/simple-iteration-method-plot/?f='+f + '&x_list='+ x )
+    .then(res=> res.text())
+    .then(data=>{
+        setPlot(data)
     })
       .catch(err => console.log(err))
   }
@@ -160,17 +160,13 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                             <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
                             <label for="x">x0: </label>
                             <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)}/>
-                            <label for="a">a: </label>
-                            <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
-                            <label for="b">b: </label>
-                            <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
                             <label for="c">C: </label>
                             <input className="textinput" type="text" placeholder="0.5" name="c" id="c" onChange={(e) => setC(e.target.value)}/>
                             <label for="epsilon">epsilon: </label>
                             <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
                             <button className="button submit" type="button" onClick={() => {
                                 console.log(f, x, a, b, c, epsilon)
-                                getDataSimpleIteration(f, x, a, b, c, epsilon, setData, setPlot, data)
+                                getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data)
                                 }}>Submit</button>
                         </form> 
         

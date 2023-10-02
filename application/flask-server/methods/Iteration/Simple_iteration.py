@@ -1,6 +1,6 @@
 import methods.Iteration.tools as tools
 
-def simple_iteration(f, a, b, aprox, C,epsilon=1e-7, max_iter=100):
+def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
     """
     Realization of the simple iteration method for solving nonlinear equations on the segment [a, b]
 
@@ -50,6 +50,6 @@ def simple_iteration(f, a, b, aprox, C,epsilon=1e-7, max_iter=100):
         if iter > max_iter:
             raise RuntimeError("The number of iterations exceeded the maximum")
         
-    return {"func": f, 'a': a, 'b': b, "epsilon": epsilon,
+    return {"func": f, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,
             "method": "Simple iteration"}

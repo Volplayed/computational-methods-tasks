@@ -34,8 +34,8 @@ function App() {
             Object.values(data).map((x, i) => <p key={i}>{x}</p>)
           )}
           </div>
-          <div className='plot'>
-            {plot && <img src={plot} alt="Matplotlib Plot" />}
+          <div className='plot_container'>
+            {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' />}
           </div>
         </div>
       </div>

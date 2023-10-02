@@ -88,16 +88,15 @@ def simple_iteration_method_server():
 
     #get parameters
     f = request.args.get('f')
-    a = request.args.get('a')
-    b = request.args.get('b')
+
     x0 = request.args.get('x')
     c = request.args.get('C')
     epsilon = request.args.get('epsilon')
 
     #test url
-    #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&&x=1&a=0&b=2&C=0.35&epsilon=1e-7
+    #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&&x=1&C=0.35&epsilon=1e-7
 
-    response = simple_iteration(str(f), float(a), float(b), float(x0), float(c), float(epsilon))
+    response = simple_iteration(str(f), float(x0), float(c), float(epsilon))
     return response
 
 #plot Simple-iteration method
@@ -105,18 +104,16 @@ def simple_iteration_method_server():
 def plot_simple_iteration_method_server():
 
     f = request.args.get('f')
-    a = request.args.get('a')
-    b = request.args.get('b')
     x_list = request.args.get('x_list')
     
     #convert string to list of floats
     x_list = list(map(float, x_list.split(',')))
 
-    return create_plot_simple_iteration(str(f), x_list, float(a), float(b))
+    return create_plot_simple_iteration(str(f), x_list)
 
 
     #test url
-    #http://localhost:5000/simple-iteration-method-plot/?f=x**3-4%20-3&a=0.1&b=5&x_list=1.0,1.6,1.8904,1.9148443572736,1.9127419889261075,1.9129496638217682,1.9129293752829035,1.9129313595280073,1.9129311654871364,1.9129311844627435
+    #http://localhost:5000/simple-iteration-method-plot/?f=x**3-4%20-3&x_list=1.0,1.6,1.8904,1.9148443572736,1.9127419889261075,1.9129496638217682,1.9129293752829035,1.9129313595280073,1.9129311654871364,1.9129311844627435
 
    
 

@@ -86,11 +86,11 @@ def create_plot_newtons(f, df, x, a, b):
         ax.annotate(f'$x_{i+1}$', (x[i], 0), xytext=(x[i] + 0.1, 0.1))
 
     
-     # Save the plot to a file (e.g., in PNG format)
-    plt.savefig('plot.png')
+    # Save the plot to a file (e.g., in SVG format)
+    plt.savefig('plot.svg')
     
     # Send the saved plot as a file to the client
-    return send_file('plot.png', mimetype='image/png')
+    return send_file('plot.svg', mimetype='image/svg+xml')
 
 
 def create_plot_konashuk(f, x, a, b):
@@ -153,13 +153,13 @@ def create_plot_konashuk(f, x, a, b):
     for i in range(len(x)):
         ax.annotate(f'$x_{i+1}$', (x[i], 0), xytext=(x[i] + 0.1, 0.1))
 
-    # Save the plot to a file (e.g., in PNG format)
-    plt.savefig('plot.png')
+    # Save the plot to a file (e.g., in SVG format)
+    plt.savefig('plot.svg')
     
     # Send the saved plot as a file to the client
-    return send_file('plot.png', mimetype='image/png')
+    return send_file('plot.svg', mimetype='image/svg+xml')
 
-def create_plot_simple_iteration(f, x, a, b):
+def create_plot_simple_iteration(f, x,):
     """
     Visualize the function and the tangent line at the given point.
 
@@ -177,7 +177,7 @@ def create_plot_simple_iteration(f, x, a, b):
     #parse the function and its derivative
     f = parse_expression(f, 'x')
 
-    x_space = np.linspace(a-10, b+10, 1000)
+    x_space = np.linspace(-abs(x[-1])*5, abs(x[-1])*5, 1000)
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     # Move left y-axis and bottom x-axis to centre, passing through (0,0)
@@ -191,18 +191,14 @@ def create_plot_simple_iteration(f, x, a, b):
     # Show ticks in the left and lower axes only
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
-    m = max(abs(a), abs(b))*2
-    ax.set_ylim(ymin=-m, ymax=m)
-    ax.set_xlim(xmin=-m, xmax=m)
+    ax.set_ylim(ymin=-abs(x[-1])*5, ymax=abs(x[-1])*5)
+    ax.set_xlim(xmin=-abs(x[-1])*5, xmax=abs(x[-1])*5)
 
     ax.plot(x_space, f(x_space), color='blue')
 
     # Plot every approximation point
     ax.scatter(x, np.zeros(len(x)), color='green')
 
-    #plot vertical -- line
-    ax.axvline(x=a, color='k', linestyle='--', alpha=0.5)
-    ax.axvline(x=b, color='k', linestyle='--', alpha=0.5)
 
     plt.tight_layout()
 
@@ -210,9 +206,9 @@ def create_plot_simple_iteration(f, x, a, b):
     for i in range(len(x)):
         ax.annotate(f'$x_{i+1}$', (x[i], 0), xytext=(x[i] + 0.1, 0.1))
 
-    # Save the plot to a file (e.g., in PNG format)
-    plt.savefig('plot.png')
+    # Save the plot to a file (e.g., in SVG format)
+    plt.savefig('plot.svg')
     
     # Send the saved plot as a file to the client
-    return send_file('plot.png', mimetype='image/png')
+    return send_file('plot.svg', mimetype='image/svg+xml')
 
