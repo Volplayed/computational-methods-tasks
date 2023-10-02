@@ -104,22 +104,24 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
             <>
                 <div className="IterationInputForm">
                 
-                <form className='form'>
-                    <label for="f">f(x): </label>
-                    <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
-                    <label for="df">f'(x): </label>
-                    <input className="textinput" type="text" placeholder="3*x**2 - 2" name="df" id="df" onChange={(e) => setDf(e.target.value)}/>
-                    <label for="x">x0: </label>
-                    <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)}/>
-                    <label for="a">a: </label>
-                    <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
-                    <label for="b">b: </label>
-                    <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
-                    <label for="epsilon">epsilon: </label>
-                    <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                    <button className="button submit" type="button" onClick={() => {
+                <form className='form' onSubmit={(e) => {
                         getDataNewton(f, df, x, a, b, epsilon, setData, setPlot, data)
-                        }}>Submit</button>
+                        e.preventDefault()
+
+                        }}>
+                    <label for="f">f(x): </label>
+                    <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
+                    <label for="df">f'(x): </label>
+                    <input className="textinput" type="text" placeholder="3*x**2 - 2" name="df" id="df" onChange={(e) => setDf(e.target.value)} required/>
+                    <label for="x">x0: </label>
+                    <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)} required/>
+                    <label for="a">a: </label>
+                    <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)} required/>
+                    <label for="b">b: </label>
+                    <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)} required/>
+                    <label for="epsilon">epsilon: </label>
+                    <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)} required/>
+                    <button className="button submit" type="submit">Submit</button>
                 </form> 
 
                 </div>
@@ -130,21 +132,23 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                 <>
                     <div className="IterationInputForm">
                     
-                    <form className='form'>
+                    <form className='form'onSubmit={(e) => {
+                        getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)
+                        e.preventDefault()
+                        }}>
                         <label for="f">f(x): </label>
-                        <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
+                        <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
                         <label for="x0">x0: </label>
-                        <input className="textinput" type="text" placeholder="0" name="x0" id="x0" onChange={(e) => setX(e.target.value)}/>
+                        <input className="textinput" type="text" placeholder="0" name="x0" id="x0" onChange={(e) => setX(e.target.value)} required/>
                         <label for="x1">x1: </label>
-                        <input className="textinput" type="text" placeholder="4" name="x1" id="x1" onChange={(e) => setX1(e.target.value)}/>               
+                        <input className="textinput" type="text" placeholder="4" name="x1" id="x1" onChange={(e) => setX1(e.target.value)} required/>               
                         <label for="a">a: </label>
-                        <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)}/>
+                        <input className="textinput" type="text" placeholder="-3" name="a" id="a" onChange={(e) => setA(e.target.value)} required/>
                         <label for="b">b: </label>
-                        <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)}/>
+                        <input className="textinput" type="text" placeholder="6" name="b" id="b" onChange={(e) => setB(e.target.value)} required/>
                         <label for="epsilon">epsilon: </label>
-                        <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                        <button className="button submit" type="button" onClick={() => {
-                        getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)}}>Submit</button>
+                        <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)} required/>
+                        <button className="button submit" type="submit">Submit</button>
                     </form> 
     
                     </div>
@@ -155,19 +159,19 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                     <>
                         <div className="IterationInputForm">
                         
-                        <form className='form'>
-                            <label for="f">f(x): </label>
-                            <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} />
-                            <label for="x">x0: </label>
-                            <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)}/>
-                            <label for="c">C: </label>
-                            <input className="textinput" type="text" placeholder="0.5" name="c" id="c" onChange={(e) => setC(e.target.value)}/>
-                            <label for="epsilon">epsilon: </label>
-                            <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)}/>
-                            <button className="button submit" type="button" onClick={() => {
-                                console.log(f, x, a, b, c, epsilon)
+                        <form className='form' onSubmit={(e) => {
                                 getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data)
-                                }}>Submit</button>
+                                e.preventDefault()
+                                }}>
+                            <label for="f">f(x): </label>
+                            <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
+                            <label for="x">x0: </label>
+                            <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)} required/>
+                            <label for="c">C: </label>
+                            <input className="textinput" type="text" placeholder="0.5" name="c" id="c" onChange={(e) => setC(e.target.value)} required/>
+                            <label for="epsilon">epsilon: </label>
+                            <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)} required/>
+                            <button className="button submit" type="submit">Submit</button>
                         </form> 
         
                         </div>
