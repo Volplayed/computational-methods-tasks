@@ -50,16 +50,19 @@ export function SystemLinearInput({data, setData, method, setMethod}) {
                         e.preventDefault()
                         setMethod("")
                         }}> 
-                        <div className='matrix-input'>
+                        <div className='matrix__container'>
                             <MatrixInput size={size} A={A} setA={setA} />
                             <p className='equals-text'> = </p>
                             <VectorInput size={size} B={B} setB={setB} />
+                        </div>
+                        <div className='options__container'>
                             <label for="size">Size: </label>
                             <input className="sizeinput numinput" type="number" value={size} min={2} 
-                            max={12} placeholder="2" name="size" id="size" 
+                            placeholder="2" name="size" id="size" 
                             onChange={(e) => setSize(e.target.value)} required/>
-                            <button className="button submit" type="submit">Submit</button>
+                            
                         </div>
+                        <button className="button submit" type="submit">Submit</button>
 
                     </form>
 

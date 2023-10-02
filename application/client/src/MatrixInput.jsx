@@ -31,11 +31,11 @@ export function MatrixInput ({A, setA, size}) {
                 <tbody>
                     {A.map((row, i) => {
                         return (
-                            <tr key={i}>
+                            <tr className="matrix-row" key={i}>
                                 {row.map((col, j) => {
                                     return (
-                                        <td key={j}>
-                                            <input className="input matrix-element" type="text" value={col} data-row={i} data-col={j} onChange={handleAChange}/>
+                                        <td className="matrix-cell"key={j}>
+                                            <input className="matrix-element input " type="text" placeholder="1" data-row={i} data-col={j} onChange={handleAChange} required/>
                                             <p className="vector-element matrix-element matrix-text">x<sub>{j+1}</sub></p>
                                         </td>
                                     )
@@ -76,7 +76,7 @@ export function VectorInput ({B, setB, size}) {
                     <tr>
                         {B.map((col, i) => {
                             return (
-                                <td key={i}>
+                                <td className="vector-col" key={i}>
                                     <input className="input vector-element matrix-element" type="text" value={col} data-index={i} onChange={handleBChange}/>
                                     
                                 </td>

@@ -121,3 +121,67 @@
     width:  100%;
     height: 100%;
 }
+
+.matrix-input {
+    display: flex;
+
+}
+
+.matrix-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.matrix-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.vector-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.input.matrix-element {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.matrix__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.options__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+.numinput {
+    width: 3rem;
+    height: 2rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
