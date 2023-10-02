@@ -1,10 +1,11 @@
 from flask import Flask, send_file, request
 from flask_cors import CORS
-import io
+import numpy as np
 #methods
 from methods.Iteration.Newtons_method import newtons_method
 from methods.Iteration.Konashuk import konashuk_method
 from methods.Iteration.Simple_iteration import simple_iteration
+from methods.LinearSystmes.Gauss_method import gauss_method
 
 #tools
 from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
@@ -115,6 +116,22 @@ def plot_simple_iteration_method_server():
     #test url
     #http://localhost:5000/simple-iteration-method-plot/?f=x**3-4%20-3&x_list=1.0,1.6,1.8904,1.9148443572736,1.9127419889261075,1.9129496638217682,1.9129293752829035,1.9129313595280073,1.9129311654871364,1.9129311844627435
 
+
+#Gauss method
+@app.route('/gauss-method/', methods=['GET'])
+def gauss_method_server():
+    #get parameters
+    A = request.args.get('A')
+    b = request.args.get('b')
+
+    #convert string to list of lists of floats
+    A = list(map(lambda x: list(map(float, x.split(','))), A.split(';')))
+    b = list(map(float, b.split(',')))
+    #test url
+    #http://localhost:5000/gauss-method/?A=1,2,3;4,5,6;7,8,10&b=1,2,3
+    print(np.array(A, dtype=float))
+    response = gauss_method(np.array(A, dtype=float), np.array(b, dtype=float))
+    return response
    
 
 if __name__ == '__main__':
