@@ -20,11 +20,11 @@ function App() {
         setData([])
         setPlot('')}
         } state={method} />
-        <div className='form-container'>
+        {<div className='form-container'>
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
             <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
           }
-        </div>  
+        </div>}  
           <DataContainer data={data} plot={plot} />
       </div>
 

@@ -46,6 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 .textinput {
     margin-bottom: 0.5rem;
@@ -65,6 +66,7 @@
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
+    
 }
 
 .button:hover {
@@ -73,7 +75,12 @@
 }
 
 .submit {
-    background-color: #000;
+    background-color: rgb(123, 189, 23);
+    color: #fff;
+}
+
+.submit:hover {
+    background-color: rgb(84, 129, 16);
     color: #fff;
 }
 
@@ -91,13 +98,14 @@
 
 .text-data {
     width: 100%;
+    height: 100%;
     font-size: 1rem;
     text-align: center;
     
 }
 
 .result-text {
-    font-size: 1.6rem;
+    font-size: 160%;
 }
 
 .plot_container {

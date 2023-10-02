@@ -2,9 +2,9 @@ function TextData ({data}) {
   if (data.method === 'Newtons' || data.method === "Konashuk" || data.method === "Simple Iteration") {
     return (
     <>
-      <p className="text result-text">Method: {data.method}</p>
-      <p className="text result-text">Function: {data.func}</p>
-      <p className="text result-text">Approximated root: {data.x_approx}</p>
+      <p className="text result-text"><b>Method</b>: {data.method}</p>
+      <p className="text result-text"><b>Function</b>: {data.func}</p>
+      <p className="text result-text"><b>Approximated root</b>: {data.x_approx}</p>
 
     </>
     )
