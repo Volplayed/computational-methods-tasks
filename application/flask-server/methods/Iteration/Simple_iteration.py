@@ -52,4 +52,4 @@ def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
         
     return {"func": f, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,
-            "method": "Simple iteration"}
+            "method": "Simple Iteration"}

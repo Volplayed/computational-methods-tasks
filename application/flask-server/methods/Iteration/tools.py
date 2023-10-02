@@ -177,7 +177,7 @@ def create_plot_simple_iteration(f, x,):
     #parse the function and its derivative
     f = parse_expression(f, 'x')
 
-    x_space = np.linspace(-abs(x[-1])*5, abs(x[-1])*5, 1000)
+    x_space = np.linspace(-abs(x[0])*5, abs(x[0])*5, 1000)
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     # Move left y-axis and bottom x-axis to centre, passing through (0,0)
@@ -191,8 +191,8 @@ def create_plot_simple_iteration(f, x,):
     # Show ticks in the left and lower axes only
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
-    ax.set_ylim(ymin=-abs(x[-1])*5, ymax=abs(x[-1])*5)
-    ax.set_xlim(xmin=-abs(x[-1])*5, xmax=abs(x[-1])*5)
+    ax.set_ylim(ymin=-abs(x[0])*5, ymax=abs(x[0])*5)
+    ax.set_xlim(xmin=-abs(x[0])*5, xmax=abs(x[0])*5)
 
     ax.plot(x_space, f(x_space), color='blue')
 

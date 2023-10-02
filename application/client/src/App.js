@@ -3,6 +3,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import {HUD} from './HUD'
 import { IterationInputForm } from './IterationInputForm';
+import { DataContainer } from './DataContainer';
 
 function App() {
 
@@ -23,21 +24,8 @@ function App() {
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
             <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} />) : (<></>)
           }
-        </div>
-        
-        <div className="data">
-          <div className='text-data'>
-          {
-          data.length === 0 ? (
-              <></>
-            ) : (
-            Object.values(data).map((x, i) => <p key={i}>{x}</p>)
-          )}
-          </div>
-          <div className='plot_container'>
-            {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' />}
-          </div>
-        </div>
+        </div>  
+          <DataContainer data={data} plot={plot} />
       </div>
 
     </div>   
