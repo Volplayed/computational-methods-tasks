@@ -9,6 +9,22 @@ function TextData ({data}) {
     </>
     )
   }
+  else if (data.method === 'Gauss') {
+
+    var X_string = ""
+    for (let i = 0; i < data.x_list.length; i++) {
+      X_string += "x" + i + "=" + data.x_list[i] + (i !== data.x_list.length - 1 ? "," : "")
+
+    }
+
+    return (
+    <>
+      <p className="text result-text"><b>Method</b>: {data.method}</p>
+      <p className="text result-text"><b>Vector X</b>: {X_string}</p>
+    </>
+    )
+
+  }
   else {
     return (<></>)
   }
@@ -17,10 +33,10 @@ function TextData ({data}) {
 function Plot ({data, plot}) {
   if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration') {
     return (
-    <>
+    <div className='plot_container'>
       {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' />}
       
-    </>
+    </div>
     )
   }
   else {
@@ -33,11 +49,8 @@ export function DataContainer ({data, plot}) {
         <div className="data_container">
           <div className='text-data'>
           {<TextData data={data}/>}
-          </div>
-          <div className='plot_container'>
+          </div> 
           {<Plot data={data} plot={plot}/>}
-            
-          </div>
         </div>
     )
 }
