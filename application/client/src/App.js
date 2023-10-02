@@ -22,7 +22,7 @@ function App() {
         } state={method} />
         <div className='form-container'>
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
-            <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} />) : (<></>)
+            <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
           }
         </div>  
           <DataContainer data={data} plot={plot} />

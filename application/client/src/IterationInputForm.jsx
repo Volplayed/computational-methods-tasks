@@ -88,7 +88,7 @@ function getPlotSimpleIteration(f, x, setPlot) {
   }
 
 
-export const IterationInputForm = ({data, setData, method, setPlot}) => {
+export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) => {
     const [f, setF] = useState('')
     const [df, setDf] = useState('')
     const [x, setX] = useState('')
@@ -107,7 +107,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                 <form className='form' onSubmit={(e) => {
                         getDataNewton(f, df, x, a, b, epsilon, setData, setPlot, data)
                         e.preventDefault()
-
+                        setMethod("")
                         }}>
                     <label for="f">f(x): </label>
                     <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
@@ -135,6 +135,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                     <form className='form'onSubmit={(e) => {
                         getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)
                         e.preventDefault()
+                        setMethod("")
                         }}>
                         <label for="f">f(x): </label>
                         <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
@@ -162,6 +163,7 @@ export const IterationInputForm = ({data, setData, method, setPlot}) => {
                         <form className='form' onSubmit={(e) => {
                                 getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data)
                                 e.preventDefault()
+                                setMethod("")
                                 }}>
                             <label for="f">f(x): </label>
                             <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
