@@ -30,7 +30,7 @@ function Plot ({data, plot}) {
 
 export function DataContainer ({data, plot}) {
     return (
-        <div className="data">
+        <div className="data_container">
           <div className='text-data'>
           {<TextData data={data}/>}
           </div>
