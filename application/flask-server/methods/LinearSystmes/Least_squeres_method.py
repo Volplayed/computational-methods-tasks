@@ -1,30 +1,8 @@
 import numpy as np
-
-def swap_zero_diagonal(A, b):
-    """
-    Swap zero diagonal elements with non-zero elements
+import sympy as sp
 
 
-    Parameters
-    ----------
-    A : numpy.ndarray
-        Matrix of coefficients
-    b : numpy.ndarray
-        Vector of free members  
-    """
-
-    for i in range(len(A)):
-        if A[i][i] == 0:
-            for j in range(len(A)):
-                if A[j][i] != 0 and i != j:
-                    A[[i, j]] = A[[j, i]]
-                    b[[i, j]] = b[[j, i]]
-                    break
-
-    
-    return A, b
-
-def least_squeres(A, b, epsilon=1e-7, max_iter=100):
+def least_squeres(A, b):
     """
     Least squeres method
 
@@ -42,16 +20,19 @@ def least_squeres(A, b, epsilon=1e-7, max_iter=100):
     numpy.ndarray
         Solution of the system
     """
+    iter = 0
 
-    A, b = swap_zero_diagonal(A, b)
+    b = b.reshape(-1, 1)
 
-    n = len(A)
-    x = np.zeros(n)
-    while np.sum(np.dot(A, x) - b) < epsilon:
-        for i in range(len(x)):
-            x[i] = b[i]
-            for j in range(len(x)):
-                if j != i:
-                    x[i] -= (A[i][j]*x[j])
+    A_t = A.transpose()
 
-    return x
+    A_t_A = np.dot(A_t, A)
+    A_t_b = np.dot(A_t, b)
+
+    A_b = np.hstack([A_t_A, A_t_b])
+
+    A_b = np.array(sp.Matrix(A_b).rref()[0])
+    print(A_b)
+    x = A_b[:, -1]
+
+    return {"x_list" : x.tolist(), "method" : "Least squeres"}

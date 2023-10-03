@@ -6,6 +6,7 @@ from methods.Iteration.Newtons_method import newtons_method
 from methods.Iteration.Konashuk import konashuk_method
 from methods.Iteration.Simple_iteration import simple_iteration
 from methods.LinearSystmes.Gauss_method import gauss_method
+from methods.LinearSystmes.Least_squeres_method import least_squeres
 
 #tools
 from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
@@ -129,10 +130,23 @@ def gauss_method_server():
     b = list(map(float, b.split(',')))
     #test url
     #http://localhost:5000/gauss-method/?A=1,2,3;4,5,6;7,8,10&b=1,2,3
-    print(np.array(A, dtype=float))
     response = gauss_method(np.array(A, dtype=float), np.array(b, dtype=float))
     return response
+
+#Least squeres method
+@app.route('/least-squeres-method/', methods=['GET'])
+def least_squeres_method_server():
+    #get parameters
+    A = request.args.get('A')
+    b = request.args.get('b')
+
+    #convert string to list of lists of floats
+    A = list(map(lambda x: list(map(float, x.split(','))), A.split(';')))
+    b = list(map(float, b.split(',')))
    
+
+    response = least_squeres(np.array(A, dtype=float), np.array(b, dtype=float))
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
