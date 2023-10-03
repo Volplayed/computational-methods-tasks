@@ -26,7 +26,7 @@ function App() {
           {(method === 'Newtons' || method === "Konashuk" || method === "Simple Iteration") ? (
             <IterationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
           }
-          {(method === 'Gauss') ? (
+          {(method === 'Gauss' || method === 'Least Squeres') ? (
             <SystemLinearInput data={data} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
           }
         </div>}  

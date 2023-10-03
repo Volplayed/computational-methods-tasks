@@ -32,7 +32,7 @@ def least_squeres(A, b):
     A_b = np.hstack([A_t_A, A_t_b])
 
     A_b = np.array(sp.Matrix(A_b).rref()[0])
-    print(A_b)
+
     x = A_b[:, -1]
 
-    return {"x_list" : x.tolist(), "method" : "Least squeres"}
+    return {"x_list" : x.astype(str).tolist(), "method" : "Least Squeres"}

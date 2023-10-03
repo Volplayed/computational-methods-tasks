@@ -9,7 +9,7 @@ function TextData ({data}) {
     </>
     )
   }
-  else if (data.method === 'Gauss') {
+  else if (data.method === 'Gauss' || data.method === "Least Squeres") {
 
     var X_string = ""
     for (let i = 0; i < data.x_list.length; i++) {

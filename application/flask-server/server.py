@@ -144,6 +144,8 @@ def least_squeres_method_server():
     A = list(map(lambda x: list(map(float, x.split(','))), A.split(';')))
     b = list(map(float, b.split(',')))
    
+    #test url
+    #http://localhost:5000/least-squeres-method/?A=1,2,3;4,5,6;7,8,10&b=1,2,3
 
     response = least_squeres(np.array(A, dtype=float), np.array(b, dtype=float))
     return response
