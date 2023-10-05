@@ -35,8 +35,8 @@ function TextData ({data}) {
 function Plot ({data, plot}) {
   if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration') {
     return (
-    <div className='plot_container'>
-      {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' />}
+    <div className='plot_container' id="svgContainer">
+      {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' id="svgImage"/>}
       
     </div>
     )
