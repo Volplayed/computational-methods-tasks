@@ -1,4 +1,4 @@
-import tools as tools
+import methods.Iteration.tools as tools
 import sympy as sp
 
 def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
@@ -26,7 +26,7 @@ def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
         Approximate solution of the equation
     """
     if abs(C) <= 0 or abs(C) >= 1:
-        raise ValueError("C must be between 0 and 1")
+        return { "error" : "C must be between 0 and 1", "method" : "error"}
 
     iter = 0
 
@@ -58,7 +58,7 @@ def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
         iter += 1
 
         if iter > max_iter:
-            raise RuntimeError("The number of iterations exceeded the maximum")
+            return { "error" : "The number of iterations exceeded the maximum", "method" : "error"}
         
     return {"func": f, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,

@@ -32,7 +32,7 @@ def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
     #the initial approximation
     x_approx = aprox
     if dfunc(x_approx) == 0:
-        raise ValueError("The derivative of the function is zero at the initial point, division by zero")
+        return {"error" : "The derivative of the function is zero at the initial point, division by zero", "method" : "error"}
 
     #list of approximations
     x_list = [x_approx]
@@ -50,7 +50,7 @@ def newtons_method(f, df, a, b, aprox, epsilon=1e-7, max_iter=100):
         iter += 1
 
         if iter > max_iter:
-            raise RuntimeError("The number of iterations exceeded the maximum")
+            return {"error" : "The number of iterations exceeded the maximum", "method" : "error"}
         
     return {"func": f, "deriv" : df, 'a': a, 'b': b, "epsilon": epsilon,
             "x_approx": x_approx, "x_list": x_list,

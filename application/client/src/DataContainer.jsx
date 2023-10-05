@@ -25,8 +25,10 @@ function TextData ({data}) {
     )
 
   }
-  else {
-    return (<></>)
+  else if (data.method === 'error') {
+    return (<>
+      <div className="text error-text"><b>Error</b>: {data.error}</div>
+    </>)
   }
 }
 

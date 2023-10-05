@@ -40,7 +40,7 @@ def konashuk_method(f, a, b, aprox1, aprox2, epsilon=1e-7, max_iter=100):
         iter += 1
 
         if iter > max_iter:
-            raise RuntimeError("The number of iterations exceeded the maximum")
+            return { "error" : "The number of iterations exceeded the maximum", "method" : "error"}
         
     return {"func": f, 'a': a, 'b': b, "epsilon": epsilon,
             "x_approx": x_list[-1], "x_list": x_list,

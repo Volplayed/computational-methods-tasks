@@ -96,5 +96,5 @@ def gauss_method(A, b):
     """
 
     A_tri, b = forward(A, b)
-    print(list(backward(A_tri, b)))
+
     return {"x_list" : list(backward(A_tri, b)), "method": "Gauss", "b": list(b)}
