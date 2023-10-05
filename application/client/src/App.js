@@ -18,7 +18,7 @@ function App() {
       const svgImage = document.getElementById("svgImage").firstElementChild;
       const svgContainer = document.getElementById("svgContainer");
     
-      var viewBox = {x:0,y:0,w:svgImage.clientWidth,h:svgImage.clientHeight};
+      var viewBox = {x:0,y:0,w:svgImage.clientWidth/1.3,h:svgImage.clientHeight/1.3};
       svgImage.setAttribute('viewBox', `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`);
       const svgSize = {w:svgImage.clientWidth,h:svgImage.clientHeight};
       var isPanning = false;
