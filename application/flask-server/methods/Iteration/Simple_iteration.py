@@ -1,4 +1,5 @@
-import methods.Iteration.tools as tools
+import tools as tools
+import sympy as sp
 
 def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
     """
@@ -29,8 +30,17 @@ def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
 
     iter = 0
 
-    #parse the function and its derivative
+    #parse the function
     func = tools.parse_expression(f, 'x')
+
+    def parse_expression_diff(f, variable):
+        x = sp.symbols(variable)
+        parsed_expr = sp.sympify(f)
+        dfunc = sp.diff(parsed_expr, x)
+        return sp.lambdify(x, dfunc, 'numpy')
+
+    #find derivative
+    dfunc = parse_expression_diff(f, 'x')
 
     #the initial approximation
     x_approx = aprox
@@ -39,8 +49,8 @@ def simple_iteration(f, aprox, C,epsilon=1e-7, max_iter=100):
     x_list = [x_approx]
 
     while abs(float(func(x_approx))) > epsilon:
-        delta = C*func(x_approx)
-        delta = delta if (func(x_approx+epsilon) - func(x_approx-epsilon)) > 0 else -delta
+        delta = (1 - C)*func(x_approx)/dfunc(x_approx)
+
         x_approx = x_approx - delta
         
         print(x_approx)
