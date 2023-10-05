@@ -185,3 +185,15 @@
     text-align: center;
     font-size: 1rem;
 }
+
+.data_container:has(.error-text) {
+    border: 1px solid red;
+    background-color: rgba(255, 127, 127, 0.3);
+}
+
+.error-text {
+    color: red;
+    font-size: 1rem;
+    margin: 2rem;
+
+}
