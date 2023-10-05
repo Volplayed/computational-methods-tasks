@@ -30,10 +30,17 @@
 .HUD__button:hover {
     background-color: #787878;
     color: #fff;
+    transform:translateY(0.4rem);
+    border-top: 1px solid #000;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
 }
 .HUD__button.active {
     background-color: #000;
     color: #fff;
+    border-top: 1px solid #000;
+    border-radius: 10px;
+    transform:translateY(0.4rem);
 }
 
 .form-container {
