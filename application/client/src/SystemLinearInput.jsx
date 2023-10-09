@@ -70,9 +70,10 @@ function getDataLeastSqueres(A, B, setData) {
 }
 
 export function SystemLinearInput({data, setData, method, setMethod}) {
-    const [size, setSize] = useState(2);
     const [A, setA] = useState([[0, 0], [0, 0]]);
     const [B, setB] = useState([0, 0]);
+    const [r, setR] = useState(2);
+    const [c, setC] = useState(2);
 
     if (method === "Gauss") {
         return (
@@ -85,15 +86,15 @@ export function SystemLinearInput({data, setData, method, setMethod}) {
                         setMethod("")
                         }}> 
                         <div className='matrix__container'>
-                            <MatrixInput size={size} A={A} setA={setA} />
+                            <MatrixInput r={r} A={A} setA={setA} />
                             <p className='equals-text'> = </p>
-                            <VectorInput size={size} B={B} setB={setB} />
+                            <VectorInput r={r} B={B} setB={setB} />
                         </div>
                         <div className='options__container'>
                             <label for="size">Size: </label>
-                            <input className="sizeinput numinput" type="number" value={size} min={2} 
+                            <input className="sizeinput numinput" type="number" value={r} min={2} 
                             placeholder="2" name="size" id="size" 
-                            onChange={(e) => setSize(e.target.value)} required/>
+                            onChange={(e) => setR(e.target.value)} required/>
                             
                         </div>
                         <button className="button submit" type="submit">Submit</button>
@@ -115,15 +116,20 @@ export function SystemLinearInput({data, setData, method, setMethod}) {
                         setMethod("")
                         }}> 
                         <div className='matrix__container'>
-                            <MatrixInput size={size} A={A} setA={setA} />
+                            <MatrixInput r={r} c={c} A={A} setA={setA} />
                             <p className='equals-text'> = </p>
-                            <VectorInput size={size} B={B} setB={setB} />
+                            <VectorInput r={r} B={B} setB={setB} />
                         </div>
                         <div className='options__container'>
-                            <label for="size">Size: </label>
-                            <input className="sizeinput numinput" type="number" value={size} min={2} 
-                            placeholder="2" name="size" id="size" 
-                            onChange={(e) => setSize(e.target.value)} required/>
+                            <label for="rows">Rows: </label>
+                            <input className="sizeinput numinput" type="number" value={r} min={2} 
+                            placeholder="2" name="rows" id="rows" 
+                            onChange={(e) => setR(e.target.value)} required/>
+
+                            <label for="cols">Cols: </label>
+                            <input className="sizeinput numinput" type="number" value={c} min={2} max={r} 
+                            placeholder="2" name="cols" id="cols" 
+                            onChange={(e) => setC(e.target.value)} required/>
                             
                         </div>
                         <button className="button submit" type="submit">Submit</button>

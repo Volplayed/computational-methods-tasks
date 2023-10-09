@@ -1,19 +1,29 @@
 import { useEffect } from "react"
 
-export function MatrixInput ({A, setA, size}) {
+export function MatrixInput ({A, setA, r, c=undefined}) {
 
-    //create matrix of size size
-    const createMatrix = (size) => {
+    //create matrix of size r x r or  r x c
+    const createMatrix = (r, c) => {
         let matrix = []
-        for (let i = 0; i < size; i++) {
-            matrix.push([])
-            for (let j = 0; j < size; j++) {
-                matrix[i].push(0)
+        if (c) {
+            for (let i = 0; i < r; i++) {
+                matrix.push([])
+                for (let j = 0; j < c; j++) {
+                    matrix[i].push(0)
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < r; i++) {
+                matrix.push([])
+                for (let j = 0; j < r; j++) {
+                    matrix[i].push(0)
+                }
             }
         }
         return matrix
     }
-    useEffect(() => {setA(createMatrix(size))}, [size])
+    useEffect(() => {setA(createMatrix(r, c))}, [r, c])
 
     //handle change in matrix
     const handleAChange = (e) => {
@@ -24,41 +34,66 @@ export function MatrixInput ({A, setA, size}) {
         newA[row][col] = value
         setA([...newA])
     }
-    
-    return (
-        <div className="matrix-input">
-            <table>
-                <tbody>
-                    {A.map((row, i) => {
-                        return (
-                            <tr className="matrix-row" key={i}>
-                                {row.map((col, j) => {
-                                    return (
-                                        <td className="matrix-cell"key={j}>
-                                            <input className="matrix-element input " type="text" placeholder="1" data-row={i} data-col={j} onChange={handleAChange} required/>
-                                            <p className="vector-element matrix-element matrix-text">x<sub>{j+1}</sub></p>
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-        </div>
-    )
+    if (c) {
+        return (
+            <div className="matrix-input">
+                <table>
+                    <tbody>
+                        {A.map((row, i) => {
+                            return (
+                                <tr className="matrix-row" key={i}>
+                                    {row.map((col, j) => {
+                                        return (
+                                            <td className="matrix-cell"key={j}>
+                                                <input className="matrix-element input " type="text" placeholder="1" data-row={i} data-col={j} onChange={handleAChange} required/>
+                                                <p className="vector-element matrix-element matrix-text">x<sub>{j+1}</sub></p>
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="matrix-input">
+                <table>
+                    <tbody>
+                        {A.map((row, i) => {
+                            return (
+                                <tr className="matrix-row" key={i}>
+                                    {row.map((col, j) => {
+                                        return (
+                                            <td className="matrix-cell"key={j}>
+                                                <input className="matrix-element input " type="text" placeholder="1" data-row={i} data-col={j} onChange={handleAChange} required/>
+                                                <p className="vector-element matrix-element matrix-text">x<sub>{j+1}</sub></p>
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
 }
 
-export function VectorInput ({B, setB, size}) {
-    const createVector= (size) => {
+export function VectorInput ({B, setB, r}) {
+    const createVector= (r) => {
         let vector = []
-        for (let i = 0; i < size; i++) {
+        for (let i = 0; i < r; i++) {
             vector.push(0)
         }
         return vector
     }
     
-    useEffect(() => {setB(createVector(size))}, [size])
+    useEffect(() => {setB(createVector(r))}, [r])
     
     //handle change in vector
     const handleBChange = (e) => {
