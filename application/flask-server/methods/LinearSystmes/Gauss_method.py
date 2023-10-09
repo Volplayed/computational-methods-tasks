@@ -41,6 +41,10 @@ def forward(A, b):
         Upper triangular matrix
     """
 
+    #check if the matrix determinant is zero
+    if np.linalg.det(A) == 0:
+        return {"error" : "The determinant of the matrix is zero; no solution", "method" : "error"}
+
     A = A.astype(np.float64)
     b = b.astype(float)
 

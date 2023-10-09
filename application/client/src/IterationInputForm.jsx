@@ -161,7 +161,6 @@ export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) 
                         <div className="IterationInputForm">
                         
                         <form className='form' onSubmit={(e) => {
-                                console.log(f, psi, x, epsilon)
                                 getDataSimpleIteration(f, psi, x, epsilon, setData, setPlot, data)
                                 e.preventDefault()
                                 setMethod("")

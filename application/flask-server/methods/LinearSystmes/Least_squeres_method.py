@@ -20,6 +20,11 @@ def least_squeres(A, b):
     numpy.ndarray
         Solution of the system
     """
+
+    #check if the matrix determinant is zero if matrix is squere matrix
+    if np.linalg.det(A) == 0 and A.shape[0] == A.shape[1]:
+        return {"error" : "The determinant of the squere matrix is zero; no solution", "method" : "error"}
+
     iter = 0
 
     b = b.reshape(-1, 1)
