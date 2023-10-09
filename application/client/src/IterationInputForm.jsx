@@ -31,13 +31,13 @@ function getDataKonashuk(f, x0, x1, a, b, epsilon, setData, setPlot, data) {
 
       
   }
-function getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data) {
+function getDataSimpleIteration(f, psi, x, epsilon, setData, setPlot, data) {
     // change all + sings to %2B
     f = f.replaceAll('+', '%2B')
 
     
 
-    fetch('http://localhost:5000/simple-iteration-method/?f='+f +'&x='+ x + '&C=' + c+ '&epsilon=' + epsilon)
+    fetch('http://localhost:5000/simple-iteration-method/?f='+f + "&psi=" + psi + '&x='+ x + '&epsilon=' + epsilon)
     .then(res => res.json()).then(data => {
       console.log(data)
         setData(data)
@@ -95,7 +95,7 @@ export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) 
     const [x1, setX1] = useState('')
     const [a, setA] = useState('')
     const [b, setB] = useState('')
-    const [c, setC] = useState('')
+    const [psi, setPsi] = useState('')
     const [epsilon, setEpsilon] = useState('')
 
 
@@ -133,7 +133,7 @@ export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) 
                     <div className="IterationInputForm">
                     
                     <form className='form'onSubmit={(e) => {
-                        getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)
+                        getDataKonashuk(f, psi, x, x1, a, b, epsilon, setData, setPlot, data)
                         e.preventDefault()
                         setMethod("")
                         }}>
@@ -161,16 +161,17 @@ export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) 
                         <div className="IterationInputForm">
                         
                         <form className='form' onSubmit={(e) => {
-                                getDataSimpleIteration(f, x, c, epsilon, setData, setPlot, data)
+                                console.log(f, psi, x, epsilon)
+                                getDataSimpleIteration(f, psi, x, epsilon, setData, setPlot, data)
                                 e.preventDefault()
                                 setMethod("")
                                 }}>
                             <label for="f">f(x): </label>
                             <input className="textinput" type="text" placeholder="x**3 - 2*x + 1" name="f" id="f" onChange={(e) => setF(e.target.value)} required/>
+                            <label for="psi">Ψ(x): </label>
+                            <input className="textinput" type="text" placeholder="0.5" name="psi" id="psi" onChange={(e) => setPsi(e.target.value)} required/>
                             <label for="x">x0: </label>
                             <input className="textinput" type="text" placeholder="2" name="x" id="x" onChange={(e) => setX(e.target.value)} required/>
-                            <label for="c">C: </label>
-                            <input className="textinput" type="text" placeholder="0.5" name="c" id="c" onChange={(e) => setC(e.target.value)} required/>
                             <label for="epsilon">epsilon: </label>
                             <input className="textinput" type="text" placeholder="1e-7" name="epsilon" id="epsilon" onChange={(e) => setEpsilon(e.target.value)} required/>
                             <button className="button submit" type="submit">Submit</button>

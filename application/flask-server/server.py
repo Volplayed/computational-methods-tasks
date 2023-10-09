@@ -90,15 +90,14 @@ def simple_iteration_method_server():
 
     #get parameters
     f = request.args.get('f')
-
+    psi = request.args.get('psi')
     x0 = request.args.get('x')
-    c = request.args.get('C')
     epsilon = request.args.get('epsilon')
 
     #test url
-    #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&&x=1&C=0.35&epsilon=1e-7
+    #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&psi=1/(3*x**2)&x=1&epsilon=1e-7
 
-    response = simple_iteration(str(f), float(x0), float(c), float(epsilon))
+    response = simple_iteration(str(f), str(psi), float(x0),float(epsilon))
     return response
 
 #plot Simple-iteration method
