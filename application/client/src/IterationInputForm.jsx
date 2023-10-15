@@ -133,7 +133,7 @@ export const IterationInputForm = ({data, setData, method, setPlot, setMethod}) 
                     <div className="IterationInputForm">
                     
                     <form className='form'onSubmit={(e) => {
-                        getDataKonashuk(f, psi, x, x1, a, b, epsilon, setData, setPlot, data)
+                        getDataKonashuk(f, x, x1, a, b, epsilon, setData, setPlot, data)
                         e.preventDefault()
                         setMethod("")
                         }}>
