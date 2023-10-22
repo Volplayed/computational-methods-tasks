@@ -7,6 +7,7 @@ from methods.Iteration.Konashuk import konashuk_method
 from methods.Iteration.Simple_iteration import simple_iteration
 from methods.LinearSystmes.Gauss_method import gauss_method
 from methods.LinearSystmes.Least_squeres_method import least_squeres
+from methods.Interpolation.Lagrange import lagrange, plot_lagrange
 
 #tools
 from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
@@ -149,5 +150,37 @@ def least_squeres_method_server():
     response = least_squeres(np.array(A, dtype=float), np.array(b, dtype=float))
     return response
 
+@app.route("/lagrange-method/", methods=["GET"])
+def lagrange_method_server():
+    x = request.args.get("x")
+    y = request.args.get("y")
+    x0 = request.args.get("x0")
+
+    x = list(map(float, x.split(",")))
+    y = list(map(float, y.split(",")))
+
+    response = lagrange(x, y, float(x0))
+    return response
+
+    # test url
+    # http://localhost:5000/lagrange-method/?x=1,2,3&y=1,2,3&x0=2
+
+#plot Lagrange method
+@app.route('/lagrange-method-plot/', methods=['GET'])
+def plot_lagrange_method_server():
+
+    x = request.args.get('x')
+    y = request.args.get('y')
+    
+    #convert string to list of floats
+    x = list(map(float, x.split(',')))
+    y = list(map(float, y.split(',')))
+
+    return plot_lagrange(x, y)
+
+    #test url
+    #http://localhost:5000/lagrange-method-plot/?x=1,2,3&y=1,2,3
+
 if __name__ == '__main__':
     app.run(debug=True)
+

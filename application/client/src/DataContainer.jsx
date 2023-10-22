@@ -25,6 +25,18 @@ function TextData ({data}) {
     )
 
   }
+  else if (data.method === 'Lagrange') {
+
+    var result = "y = " + data.y0 + " x = " + data.x0
+
+    return (
+    <>
+      <p className="text result-text"><b>Method</b>: {data.method}</p>
+      <p className="text result-text"><b>Found point</b>: {result}</p>
+    </>
+    )
+
+  }
   else if (data.method === 'error') {
     return (<>
       <div className="text error-text"><b>Error</b>: {data.error}</div>
@@ -33,7 +45,7 @@ function TextData ({data}) {
 }
 
 function Plot ({data, plot}) {
-  if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration') {
+  if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration' || data.method === 'Lagrange') {
     return (
     <div className='plot_container' id="svgContainer">
       {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' id="svgImage"/>}

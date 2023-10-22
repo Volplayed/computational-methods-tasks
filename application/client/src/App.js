@@ -5,6 +5,7 @@ import {HUD} from './HUD'
 import { IterationInputForm } from './IterationInputForm';
 import { DataContainer } from './DataContainer';
 import { SystemLinearInput } from './SystemLinearInput';
+import { InterpolationInputForm } from './InterpolationInput'
 
 function App() {
 
@@ -89,6 +90,11 @@ function App() {
           }
           {(method === 'Gauss' || method === 'Least Squeres') ? (
             <SystemLinearInput data={data} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
+          }
+          {(method === 'Lagrange') ? (
+            <InterpolationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>
+          )
+
           }
         </div>}  
           <DataContainer data={data} plot={plot} />
