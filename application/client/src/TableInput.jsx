@@ -3,9 +3,10 @@ import { useEffect } from "react"
 
 export function TableInput({A, setA, c}){
     const createTable= (c) => {
-        let table = []
+        let table = [[], []]
         for (let i = 0; i < c; i++) {
-            table.push([i, i])
+            table[0].push(i)
+            table[1].push(i)
         }
         return table
     }
@@ -25,6 +26,7 @@ export function TableInput({A, setA, c}){
                     {A.map((row, i) => {
                         return (
                             <tr className="table-row" key={i}>
+                                {(i === 0) ? (<p className="text">X:</p>) : (<p className="text">Y:</p>)}
                                 {row.map((col, j) => {
                                     return (
                                         <td className="table-cell"key={j}>

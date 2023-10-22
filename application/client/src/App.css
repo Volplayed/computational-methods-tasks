@@ -210,3 +210,37 @@ label {
     font-size: 1rem;
     margin: 0.5rem;
 }
+
+.table-input {
+    display: flex;
+}
+
+.table-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-element {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #000;
+    text-align: center;
+    font-size: 1rem;
+}
+

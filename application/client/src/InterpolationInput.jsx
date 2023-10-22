@@ -5,9 +5,9 @@ function getDataLagrange(A, x0, setData, setPlot) {
     //get x and y
     let x = []
     let y = []
-    for (let i = 0; i < A.length; i++) {
-        x.push(A[i][0])
-        y.push(A[i][1])
+    for (let i = 0; i < A[0].length; i++) {
+        x.push(A[0][i])
+        y.push(A[1][i])
     }
     //format x and y
     let x_string = ""
@@ -56,7 +56,7 @@ function getPlotLagrange(x, y, setPlot) {
 }
 
 export function InterpolationInputForm({data, setData, setPlot, method, setMethod}) {
-    const [A, setA] = useState([[0, 0], [0, 0]]);
+    const [A, setA] = useState([[0, 1], [0, 1]]);
     const [x0, setX0] = useState(0);
     const [c, setC] = useState(2);
 
