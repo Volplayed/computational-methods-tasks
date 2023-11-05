@@ -25,7 +25,7 @@ function TextData ({data}) {
     )
 
   }
-  else if (data.method === 'Lagrange') {
+  else if (data.method === 'Lagrange'|| data.method === 'Newton Interpolation') {
 
     var result = "y = " + data.y0 + " x = " + data.x0
 
@@ -45,7 +45,7 @@ function TextData ({data}) {
 }
 
 function Plot ({data, plot}) {
-  if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration' || data.method === 'Lagrange') {
+  if (data.method === 'Newtons' || data.method === 'Konashuk' || data.method === 'Simple Iteration' || data.method === 'Lagrange' || data.method === 'Newton Interpolation') {
     return (
     <div className='plot_container' id="svgContainer">
       {plot && <div dangerouslySetInnerHTML={{ __html: plot }} className='plot' id="svgImage"/>}

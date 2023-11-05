@@ -8,6 +8,7 @@ from methods.Iteration.Simple_iteration import simple_iteration
 from methods.LinearSystmes.Gauss_method import gauss_method
 from methods.LinearSystmes.Least_squeres_method import least_squeres
 from methods.Interpolation.Lagrange import lagrange, plot_lagrange
+from methods.Interpolation.Newton import newton_interpolation, plot_newton
 
 #tools
 from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
@@ -180,6 +181,38 @@ def plot_lagrange_method_server():
 
     #test url
     #http://localhost:5000/lagrange-method-plot/?x=1,2,3&y=1,2,3
+
+#Newton interpolation method
+@app.route('/newton-interpolation-method/', methods=['GET'])
+def newton_interpolation_method_server():
+    x = request.args.get('x')
+    y = request.args.get('y')
+    x0 = request.args.get('x0')
+
+    x = list(map(float, x.split(",")))
+    y = list(map(float, y.split(",")))
+
+    response = newton_interpolation(x, y, float(x0))
+    return response
+
+    # test url
+    # http://localhost:5000/newton-interpolation-method/?x=1,2,3&y=1,2,3&x0=2
+
+#plot Newton interpolation method
+@app.route('/newton-interpolation-method-plot/', methods=['GET'])
+def plot_newton_interpolation_method_server():
+
+    x = request.args.get('x')
+    y = request.args.get('y')
+    
+    #convert string to list of floats
+    x = list(map(float, x.split(',')))
+    y = list(map(float, y.split(',')))
+
+    return plot_newton(x, y)
+
+    #test url
+    #http://localhost:5000/newton-interpolation-method-plot/?x=1,2,3&y=1,2,3
 
 if __name__ == '__main__':
     app.run(debug=True)

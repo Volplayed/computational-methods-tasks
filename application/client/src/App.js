@@ -91,7 +91,7 @@ function App() {
           {(method === 'Gauss' || method === 'Least Squeres') ? (
             <SystemLinearInput data={data} setData={setData} method={method} setMethod={setMethod} />) : (<></>)
           }
-          {(method === 'Lagrange') ? (
+          {(method === 'Lagrange' || method === 'Newton Interpolation') ? (
             <InterpolationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>
           )
 

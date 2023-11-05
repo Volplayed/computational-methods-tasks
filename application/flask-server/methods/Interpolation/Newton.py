@@ -3,14 +3,14 @@ import operator
 import matplotlib.pyplot as plt
 from flask import send_file
 
-def lagrange(x: np.ndarray, y: np.ndarray, x0):
+def newton_interpolation(x: np.ndarray, y: np.ndarray, x0):
     """
-    Interpolates a function using the Lagrange method
+    Interpolates a function using the Newtons polinoimial method
 
     Parameters
     ----------
     x : numpy.ndarray
-        A horizontal vector with the x values of the points
+        A horizontal vector with the equidistant x values of the points
     y : numpy.ndarray
         A horizontal vector with the y values of the points
     x0 : float
@@ -22,33 +22,29 @@ def lagrange(x: np.ndarray, y: np.ndarray, x0):
         The value of the function at x0
     """
 
-    
-    def lag_temp(xi):
+    def divided_diff(x, j, k):
+        if k == 0:
+            return y[j]
+        else:
+            return (divided_diff(x, j + 1, k - 1) - divided_diff(x, j, k - 1)) / (x[j + k] - x[j])
+
+    def newton_temp(x0):
         n = len(x)
         result = 0.0
-        for i in range(n):
-    
-            # Compute individual terms of above formula
-            term = y[i]
-            for j in range(n):
-                if j != i:
-                    term = term * (xi - x[j]) / (x[i] - x[j])
-    
-            # Add current term to result
+        for k in range(n):
+            term = divided_diff(x, 0, k)
+            for j in range(k):
+                term *= (x0 - x[j])
             result += term
-    
         return result
     
-    y0 = lag_temp(x0)
+    y0 = newton_temp(x0)
     x_list = np.linspace(np.min(x), np.max(x), 100)
-    y_list = lag_temp(x_list)
+    y_list = newton_temp(x_list)
 
-    return {"x0":x0, "y0" : y0, "method" : "Lagrange", "x_list" : x_list.tolist(), "y_list" : y_list.tolist()}
+    return {"x0":x0, "y0" : y0, "method" : "Newton Interpolation", "x_list" : x_list.tolist(), "y_list" : y_list.tolist()}
 
-
-
-def plot_lagrange(x, y):
-
+def plot_newton(x, y):
     fig = plt.figure()
     ax = fig.gca()
     ax.spines['left'].set_position('center')
@@ -71,4 +67,3 @@ def plot_lagrange(x, y):
     plt.savefig('plot.svg')
 
     return send_file('plot.svg', mimetype='image/svg+xml')
-
