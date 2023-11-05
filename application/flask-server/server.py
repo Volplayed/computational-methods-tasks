@@ -5,8 +5,8 @@ import numpy as np
 from methods.Iteration.Newtons_method import newtons_method
 from methods.Iteration.Konashuk import konashuk_method
 from methods.Iteration.Simple_iteration import simple_iteration
-from methods.LinearSystmes.Gauss_method import gauss_method
-from methods.LinearSystmes.Least_squeres_method import least_squeres
+from methods.LinearSystems.Gauss_method import gauss_method
+from methods.LinearSystems.Least_squeres_method import least_squeres
 from methods.Interpolation.Lagrange import lagrange, plot_lagrange
 from methods.Interpolation.Newton import newton_interpolation, plot_newton
 
