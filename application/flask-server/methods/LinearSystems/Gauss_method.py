@@ -71,8 +71,11 @@ def backward(A_tri, b):
     n = len(A_tri)
     x = np.zeros(n)
     for i in range(n-1, -1, -1):
-        x[i] = (b[i] - np.dot(A_tri[i][i+1:], x[i+1:])) / A_tri[i][i]
-    
+        if all(A_tri[i] == 0):
+            x[i] = 0
+        else:
+            x[i] = (b[i] - np.dot(A_tri[i][i+1:], x[i+1:])) / A_tri[i][i]
+        
     return x
 
 def gauss_method(A, b):
@@ -99,4 +102,9 @@ def gauss_method(A, b):
 
     A_tri, b = forward(A, b)
 
-    return {"x_list" : list(backward(A_tri, b)), "method": "Gauss", "b": list(b)}
+    x = backward(A_tri, b)
+
+    if np.linalg.matrix_rank(A) != np.linalg.matrix_rank(np.vstack([A, b])):
+        return {"method": "error", "error": "The system has no solution"}
+
+    return {"x_list" : list(x), "method": "Gauss", "b": list(b)}

@@ -36,4 +36,7 @@ def least_squeres(A, b):
 
     x = A_b[:, -1]
 
+    if np.linalg.matrix_rank(A) != np.linalg.matrix_rank(np.hstack([A, b])):
+        return {"method": "error", "error": "The system has no solution"}
+
     return {"x_list" : x.astype(str).tolist(), "method" : "Least Squeres"}
