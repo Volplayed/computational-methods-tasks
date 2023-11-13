@@ -22,7 +22,7 @@ def swap_first_nonzero(matrix, col, b):
         if matrix[i][col] != 0:
             matrix[[col, i]] = matrix[[i, col]]
             b[[col, i]] = b[[i, col]]
-            return matrix, b
+    return matrix, b
 
 def forward(A, b):
     """
@@ -41,13 +41,6 @@ def forward(A, b):
         Upper triangular matrix
     """
 
-    #check if the matrix determinant is zero
-    if np.linalg.det(A) == 0:
-        return {"error" : "The determinant of the matrix is zero; no solution", "method" : "error"}
-
-    A = A.astype(np.float64)
-    b = b.astype(float)
-
     n = len(A)
     for i in range(n-1):
         A, b = swap_first_nonzero(A, i, b)
@@ -55,7 +48,7 @@ def forward(A, b):
             m = A[j][i]/A[i][i]
             A[j] = A[j] - m*A[i]
             b[j] = b[j] - m*b[i]
-            
+        
     return A, b
 
 
@@ -75,11 +68,11 @@ def backward(A_tri, b):
     x : numpy.ndarray
         The solution to the system of equations
     """
-
     n = len(A_tri)
     x = np.zeros(n)
     for i in range(n-1, -1, -1):
         x[i] = (b[i] - np.dot(A_tri[i][i+1:], x[i+1:])) / A_tri[i][i]
+    
     return x
 
 def gauss_method(A, b):
@@ -98,6 +91,11 @@ def gauss_method(A, b):
     x : numpy.ndarray
         The solution to the system of equations
     """
+
+    
+    A = A.astype(float)
+    b = b.astype(float)
+
 
     A_tri, b = forward(A, b)
 
