@@ -29,8 +29,10 @@ def newtons_method_server():
 
     #test url
     #http://localhost:5000/newtons-method/?f=x**3-4%20-3&df=3*(x**2)&x=1&a=0&b=2&epsilon=1e-7
-
-    response = newtons_method(str(f), str(df), float(a), float(b), float(x0), float(epsilon))
+    try:
+        response = newtons_method(str(f), str(df), float(a), float(b), float(x0), float(epsilon))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
 #plot Newton's method
@@ -62,9 +64,10 @@ def konashuk_method_server():
     x0 = request.args.get('x0')
     x1 = request.args.get('x1')
     epsilon = request.args.get('epsilon')
-
-    response = konashuk_method(str(f), float(a), float(b), float(x0), float(x1), float(epsilon))
-
+    try:
+        response = konashuk_method(str(f), float(a), float(b), float(x0), float(x1), float(epsilon))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     #test url
     #http://localhost:5000/konashuk-method/?f=x**3-4*x-3&x0=1&x1=2&a=0&b=2&epsilon=1e-7
 
@@ -98,8 +101,10 @@ def simple_iteration_method_server():
 
     #test url
     #http://localhost:5000/simple-iteration-method/?f=x**3-4%20-3&psi=1/(3*x**2)&x=1&epsilon=1e-7
-
-    response = simple_iteration(str(f), str(psi), float(x0),float(epsilon))
+    try:
+        response = simple_iteration(str(f), str(psi), float(x0),float(epsilon))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
 #plot Simple-iteration method
@@ -131,7 +136,10 @@ def gauss_method_server():
     b = list(map(float, b.split(',')))
     #test url
     #http://localhost:5000/gauss-method/?A=1,2,3;4,5,6;7,8,10&b=1,2,3
-    response = gauss_method(np.array(A, dtype=float), np.array(b, dtype=float))
+    try:
+        response = gauss_method(np.array(A, dtype=float), np.array(b, dtype=float))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
 #Least squeres method
@@ -147,8 +155,10 @@ def least_squeres_method_server():
    
     #test url
     #http://localhost:5000/least-squeres-method/?A=1,2,3;4,5,6;7,8,10&b=1,2,3
-
-    response = least_squeres(np.array(A, dtype=float), np.array(b, dtype=float))
+    try:
+        response = least_squeres(np.array(A, dtype=float), np.array(b, dtype=float))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
 @app.route("/lagrange-method/", methods=["GET"])
@@ -159,8 +169,10 @@ def lagrange_method_server():
 
     x = list(map(float, x.split(",")))
     y = list(map(float, y.split(",")))
-
-    response = lagrange(x, y, float(x0))
+    try:
+        response = lagrange(x, y, float(x0))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
     # test url
@@ -191,8 +203,10 @@ def newton_interpolation_method_server():
 
     x = list(map(float, x.split(",")))
     y = list(map(float, y.split(",")))
-
-    response = newton_interpolation(x, y, float(x0))
+    try:
+        response = newton_interpolation(x, y, float(x0))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
     return response
 
     # test url
