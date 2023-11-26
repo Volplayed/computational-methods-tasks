@@ -105,6 +105,6 @@ def gauss_method(A, b):
     x = backward(A_tri, b)
 
     if np.linalg.matrix_rank(A) != np.linalg.matrix_rank(np.vstack([A, b])):
-        return {"method": "error", "error": "The system has no solution"}
+        return {"method": "error", "error": "The system has no solution or has infinite solutions"}
 
     return {"x_list" : list(x), "method": "Gauss", "b": list(b)}
