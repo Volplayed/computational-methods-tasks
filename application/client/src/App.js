@@ -6,6 +6,7 @@ import { IterationInputForm } from './IterationInputForm';
 import { DataContainer } from './DataContainer';
 import { SystemLinearInput } from './SystemLinearInput';
 import { InterpolationInputForm } from './InterpolationInput'
+import { IntergrationInputForm } from './IntegrationInput';
 
 function App() {
 
@@ -93,6 +94,11 @@ function App() {
           }
           {(method === 'Lagrange' || method === 'Newton Interpolation') ? (
             <InterpolationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>
+          )
+
+          }
+          {(method === 'Numerical integration') ? (
+            <IntergrationInputForm data={data} setPlot={setPlot} setData={setData} method={method} setMethod={setMethod} />) : (<></>
           )
 
           }

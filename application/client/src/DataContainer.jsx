@@ -37,6 +37,16 @@ function TextData ({data}) {
     )
 
   }
+  else if (data.method === "Numerical integration") {
+
+    return (
+    <>
+      <p className="text result-text"><b>Method</b>: {data.method}</p>
+      <p className="text result-text"><b>Found integral from {data.a} to {data.b}</b>: {data.result}</p>
+    </>
+    )
+
+  }
   else if (data.method === 'error') {
     return (<>
       <div className="text error-text"><b>Error</b>: {data.error}</div>

@@ -1,6 +1,6 @@
 export const HUD = ({state, onClick}) => {
 
-    const methods = ["Newtons", "Konashuk", "Simple Iteration", "Gauss", "Least Squeres", "Lagrange", "Newton Interpolation"]
+    const methods = ["Newtons", "Konashuk", "Simple Iteration", "Gauss", "Least Squeres", "Lagrange", "Newton Interpolation", "Numerical integration"]
     return (
 
         <div className="HUD">

@@ -9,6 +9,7 @@ from methods.LinearSystems.Gauss_method import gauss_method
 from methods.LinearSystems.Least_squeres_method import least_squeres
 from methods.Interpolation.Lagrange import lagrange, plot_lagrange
 from methods.Interpolation.Newton import newton_interpolation, plot_newton
+from methods.Integration.NumericalIntegration import integral
 
 #tools
 from methods.Iteration.tools import create_plot_newtons, create_plot_konashuk, create_plot_simple_iteration
@@ -227,6 +228,24 @@ def plot_newton_interpolation_method_server():
 
     #test url
     #http://localhost:5000/newton-interpolation-method-plot/?x=1,2,3&y=1,2,3
+
+#Numerical integration
+@app.route('/numerical-integration/', methods=['GET'])
+def numerical_integration_server():
+    #get parameters
+    method = request.args.get('method')
+    f = request.args.get('f')
+    a = request.args.get('a')
+    b = request.args.get('b')
+    n = request.args.get('n')
+
+    #test url
+    #http://localhost:5000/numerical-integration/?method=rectangle&f=x**2&n=100&a=0&b=2
+    try:
+        response = integral(method, str(f), float(a), float(b), int(n))
+    except:
+        response = {"method": "error", "error": "Failed to calculate the result"}
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
