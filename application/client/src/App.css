@@ -1,0 +1,246 @@
+.HUD {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.HUD__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.HUD__button {
+    pointer-events: auto;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0 10px;
+    padding: 1rem;  
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    
+}
+
+.HUD__button:hover {
+    background-color: #787878;
+    color: #fff;
+    transform:translateY(0.4rem);
+    border-top: 1px solid #000;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+.HUD__button.active {
+    background-color: #000;
+    color: #fff;
+    border-top: 1px solid #000;
+    border-radius: 10px;
+    transform:translateY(0.4rem);
+}
+
+.form-container {
+    margin-top: 4rem;
+    background-color: #ffffff;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.textinput {
+    margin-bottom: 0.5rem;
+    width: 33%;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+
+}
+
+.button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.button:hover {
+    background-color: #3d3d3d;
+    color: #fff;
+}
+
+.submit {
+    background-color: rgb(123, 189, 23);
+    color: #fff;
+}
+
+.submit:hover {
+    background-color: rgb(84, 129, 16);
+    color: #fff;
+}
+
+.data_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.text-data {
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    text-align: center;
+    
+}
+
+.result-text {
+    font-size: 160%;
+}
+
+.plot_container {
+    width: 100%;
+    height: 100%;
+    border-left: 1px solid #000;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.plot svg {
+    width:  100%;
+    height: 100%;
+}
+
+.matrix-input {
+    display: flex;
+
+}
+
+.matrix-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.matrix-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.vector-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.input.matrix-element {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.matrix__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.options__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+.numinput {
+    width: 3rem;
+    height: 2rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.data_container:has(.error-text) {
+    border: 1px solid red;
+    background-color: rgba(255, 127, 127, 0.3);
+}
+
+.error-text {
+    color: red;
+    font-size: 1rem;
+    margin: 2rem;
+
+}
+
+label {
+    font-size: 1rem;
+    margin: 0.5rem;
+}
+
+.table-input {
+    display: flex;
+}
+
+.table-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-element {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid #000;
+    text-align: center;
+    font-size: 1rem;
+}
+
